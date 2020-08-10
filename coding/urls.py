@@ -15,10 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from front.views import *
+from front import urls as furls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('/editor/', BasicSampleFormView.as_view(), name='editor'),
-    path('', index, name='index'),
+    path('',include(furls,namespace='front')),
 ]
