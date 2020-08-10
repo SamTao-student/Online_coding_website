@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+    在线编程
+{% endblock %}
+{% block maintext %}
+    <style>
+            .clearfix:after{content: "";display: block; height: 0;line-height: 0;visibility: hidden;clear: both;}
+            .container{position: relative;}
+            .wraper{width: 33%;height: 800px; }
+            .left{float: left;}
+            .right{float: right;}
+            .center{position: absolute;left: 33%;;}
+</style>
+     <div class="container clearfix">
+            <div class="wraper left">描述</div>
+            <div class="wraper center">
+                {% load djangocodemirror_tags %}
+
+<form action="." method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">
+</form>
+
+{% codemirror_field_css_assets form.editor %}
+{% codemirror_field_js_assets form.editor %}
+<script>
+    var foo_codemirror = CodeMirror.fromTextArea(
+        document.getElementById("id_editor"),
+        {{ form.editor|codemirror_parameters }}
+    );
+</script>
+            </div>
+            <div class="wraper right">运行结果</div>
+{% endblock %}
