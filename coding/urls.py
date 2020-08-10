@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-import  front
+from front import urls as furls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include(front.urls))
+    path('',include(furls))
 ]
