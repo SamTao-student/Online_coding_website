@@ -4,10 +4,9 @@
 # @File    : urls.py
 # @Software: PyCharm
 from django.urls import path
-from .views import *
+
 app_name = 'front'
 
 urlpatterns = [
-    path('/editor/', BasicSampleFormView.as_view(), name='editor'),
-    path('',index,name='index'),
+
 ]
