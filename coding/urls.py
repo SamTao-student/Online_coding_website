@@ -20,5 +20,6 @@ from login import urls as lurls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include(furls,namespace='front')),
-    path('',include(lurls,namespace='login'))
+    path('',include(lurls,namespace='login')),
+    path('captcha/',include('captcha.urls')),
 ]

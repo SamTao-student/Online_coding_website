@@ -4,7 +4,7 @@
 # @File    : urls.py
 # @Software: PyCharm
 
-from django.urls import path
+from django.urls import path,include
 from . import views
 
 app_name = 'login'
@@ -14,5 +14,5 @@ urlpatterns = [
     path('login/',views.login),
     path('register/',views.register),
     path('logout/',views.logout),
-    path('test/',views.test)
+    path('test/',views.test),
 ]

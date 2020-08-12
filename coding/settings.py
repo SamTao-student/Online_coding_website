@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'front',
     'djangocodemirror',
     'login',
+    'captcha',
 ]
 
 MIDDLEWARE = [
