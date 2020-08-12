@@ -29,6 +29,6 @@ int main(void)
         return HttpResponse('success')
 
 def index(request):
-    return render(request,'base.html')
+    return render(request,'index.html')
 
 
