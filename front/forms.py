@@ -7,7 +7,7 @@
 from django import forms
 
 from djangocodemirror.fields import CodeMirrorField
-from djangocodemirror.widgets import CodeMirrorWidget
+
 
 class SampleForm(forms.Form):
     editor = CodeMirrorField(label="请输入你的代码", required=True,

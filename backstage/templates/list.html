@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}后台{% endblock %}
+{% block maintext %}
+
+    {% if request.session.user_status == '老师' %}
+        {% load djangocodemirror_tags %}
+        {{ task_form.as_p }}
+        {% codemirror_field_css_assets task_form.scripts %}
+        {% codemirror_field_js_assets task_form.scripts %}
+        <script>
+    var foo_codemirror = CodeMirror.fromTextArea(
+        document.getElementById("id_scripts"),
+        {{ task_form.scripts|codemirror_parameters }}
+    );
+        </script>
+    {% else %}
+        <h1>你没有访问权限</h1>
+    {% endif %}
+{% endblock %}

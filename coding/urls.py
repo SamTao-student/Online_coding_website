@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path,include
 from front import urls as furls
 from login import urls as lurls
+from backstage import urls as burls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include(furls,namespace='front')),
     path('',include(lurls,namespace='login')),
+    path('back/',include(burls,namespace='backstage')),
     path('captcha/',include('captcha.urls')),
 ]
