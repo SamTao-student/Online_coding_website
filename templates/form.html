@@ -3,22 +3,20 @@
     在线编程
 {% endblock %}
 {% block maintext %}
-    <style>
-            .clearfix:after{content: "";display: block; height: 0;line-height: 0;visibility: hidden;clear: both;}
-            .container{position: relative;}
-            .wraper{width: 33%;height: 800px; }
-            .left{float: left;}
-            .right{float: right;}
-            .center{position: absolute;left: 33%;;}
-</style>
-     <div class="container clearfix">
-            <div class="wraper left">描述</div>
-            <div class="wraper center">
+            <div class="col-sm-4">
+            <div class="text-info page-header"><h3>任务</h3></div>
+                <div><h4>题目：{{ task.title }}</h4></div>
+                描述：{{ task.descriptions }}
+            </div>
+            <div class="col-sm-4">
                 {% load djangocodemirror_tags %}
+<form action="#" method="post">{% csrf_token %}
+    <div class="form-group">
+        <div class="text-info page-header"><h3>你的代码</h3></div>
 
-<form action="." method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit">
+        {{ form.editor }}
+    </div>
+    <input type="submit" class="btn btn-primary">
 </form>
 
 {% codemirror_field_css_assets form.editor %}
@@ -30,5 +28,7 @@
     );
 </script>
             </div>
-            <div class="wraper right">运行结果</div>
+            <div class="col-sm-4">
+            <div class="text-info page-header"><h3>运行结果</h3></div>
+                <div>{{ result }}</div>
 {% endblock %}

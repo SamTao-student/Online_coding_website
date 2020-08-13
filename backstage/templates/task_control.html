@@ -1,0 +1,72 @@
+{% extends 'list.html' %}
+{% block right_context %}
+<div class="col-sm-10">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            删除任务
+                        </div>
+                        <div class="panel-body">
+                        <div class="head-form">
+                            <form role="form" class="form-inline" method="post">{% csrf_token %}
+                                <div class="form-group">
+                                    <label for="name">标题</label>
+                                    <input type="text" class="form-control" id="name" placeholder="请输入题目的标题">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-default">开始搜索</button>
+                                </div>
+                            </form>
+                            <form method="post" action="{% url 'backstage:create_task' %}">{% csrf_token %}
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-success">新增</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="table-responsive">
+                        <table class="table table-striped ">
+                            <thead>
+                                <tr>
+                                    <th>编号</th>
+                                    <th>题目</th>
+                                    <th>发布时间</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for context in task_list %}
+                                <tr>
+                                    <td>{{ context.id }}</td>
+                                    <td>{{ context.title }}</td>
+                                    <td>{{ context.c_time }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a href="" class="btn btn-default">编辑</a><a href="" class="btn btn-danger">删除</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <ul class="pagination" style="float: right;">
+                        <li><a href="#">&laquo;</a>
+                        </li>
+                        <li class="active"><a href="#">1</a>
+                        </li>
+                        <li class="disabled"><a href="#">2</a>
+                        </li>
+                        <li><a href="#">3</a>
+                        </li>
+                        <li><a href="#">4</a>
+                        </li>
+                        <li><a href="#">5</a>
+                        </li>
+                        <li><a href="#">&raquo;</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+{% endblock %}

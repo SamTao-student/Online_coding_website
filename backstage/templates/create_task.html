@@ -11,10 +11,25 @@
                                 {% if message %}
                                     <div class="alert alert-warning">{{ message }}</div>
                                 {% endif %}
+                                {% if success %}
+                                    <div class="alert alert-success">{{ success }}</div>
+                                {% endif %}
                             <form action="." method="post">{% csrf_token %}
-                                {{ task_form.as_p }}
-                                <input type="submit" value="一键发布">
+                                <div class="form-group">
+                                    {{ task_form.title.label }}
+                                    {{ task_form.title }}
+                                </div>
+                                <div class="form-group">
+                                    {{ task_form.descriptions.label }}
+                                    {{ task_form.descriptions }}
+                                </div>
+                                <div class="form-group">
+                                    {{ task_form.scripts.label }}
+                                    {{ task_form.scripts }}
+                                </div>
+                                <input type="submit" value="一键发布" class="btn btn-primary">
                             </form>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -9,12 +9,10 @@ def hash_code(s,salt='mysite'):
     h.update(s.encode())
     return h.hexdigest
 
-def index(request):
-    return render(request,'index.html')
 
 def login(request):
     if request.session.get('is_login',None):
-        return redirect('login:index')
+        return redirect('front:index')
     if request.method == "POST":
         login_form = UserForm(request.POST)
         message = "请检查填写的内容！"
@@ -28,7 +26,7 @@ def login(request):
                     request.session['user_id'] = user.id
                     request.session['user_name'] = user.name
                     request.session['user_status'] = user.status
-                    return redirect('login:index')
+                    return redirect('front:index')
                 else:
                     message = "密码不正确！"
             except:
@@ -42,7 +40,7 @@ def login(request):
 def register(request):
     if request.session.get('is_login', None):
         # 登录状态不允许注册。你可以修改这条原则！
-        return redirect("login:index")
+        return redirect("front:index")
     if request.method == "POST":
         register_form = RegisterForm(request.POST)
         message = "请检查填写的内容！"
@@ -79,9 +77,9 @@ def register(request):
 
 def logout(request):
     if not request.session.get('is_login',None):
-        return redirect('login:index')
+        return redirect('front:index')
     request.session.flush()
-    return redirect('login:index')
+    return redirect('front:index')
 
 def test(request):
     return render(request,'test.html')

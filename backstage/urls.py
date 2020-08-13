@@ -8,5 +8,6 @@ from .views import *
 app_name = 'backstage'
 urlpatterns = [
     path('',index,name='index'),
-    path('create_task/',create_task,name='create_task')
+    path('create_task/',create_task,name='create_task'),
+    path('task_control/',task_control,name='task_control'),
 ]

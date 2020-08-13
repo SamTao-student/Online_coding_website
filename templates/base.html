@@ -37,8 +37,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="my-nav">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="{% url 'login:index' %}">主页</a></li>
-              <li class="active"><a href="{% url 'front:editor' %}">在线编程</a></li>
+            <li class="active"><a href="{% url 'front:index' %}">主页</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
               {% if request.session.is_login %}
@@ -79,4 +78,5 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
   </body>
+{% block js %}{% endblock %}
 </html>

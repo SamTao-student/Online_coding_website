@@ -7,13 +7,13 @@
                 <div class="col-sm-2">
                     <a href="#" class="list-group-item active"><span class="glyphicon glyphicon-home"></span>后台管理
                     </a>
-                    <a href="{% url 'backstage:create_task' %}" class="list-group-item">
-                    <!-- 小图标样式设置 -->
+                    <a href="{% url 'backstage:task_control' %}" class="list-group-item">
                         <span class="glyphicon glyphicon-align-left" aria-hidden="true">
-                    </span>发布任务</a>
+                    </span>任务管理</a>
                     <a href="#" class="list-group-item">
                         <span class="glyphicon glyphicon-align-left" aria-hidden="true">
-                    </span>创建班级</a>
+                    </span>班级管理</a>
+
                 </div>
                 {% block right_context %}
                     <h2 class="text-center">欢迎来到教师后台</h2>

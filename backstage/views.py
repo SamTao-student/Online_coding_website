@@ -17,14 +17,17 @@ def create_task(request):
                 message = '相同的标题已存在，请重新输入'
                 return render(request,'create_task.html',locals())
             else:
+                success = '发布成功！请到任务管理界面查看'
                 new_task = Task.objects.create()
                 new_task.author = request.session.get('user_name')
                 new_task.title = title
                 new_task.descriptions = descriptions
                 new_task.scripts = scripts
                 new_task.save()
-                return HttpResponse('Success')
-        else:
-            return HttpResponse('FormUnviald')
+                return render(request,'create_task.html',locals())
     task_form = CreateTask()
     return render(request,'create_task.html',locals())
+
+def task_control(request):
+    task_list =  Task.objects.filter(author=request.session.get('user_name'))
+    return render(request,'task_control.html',locals())
