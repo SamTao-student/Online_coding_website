@@ -1,0 +1,21 @@
+{% extends 'list.html' %}
+{% block title %}发布任务{% endblock %}
+{% block right_context %}
+    <div class="col-sm-10">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            发布任务
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-4 col-md-offset-4">
+                                {% if message %}
+                                    <div class="alert alert-warning">{{ message }}</div>
+                                {% endif %}
+                            <form action="." method="post">{% csrf_token %}
+                                {{ task_form.as_p }}
+                                <input type="submit" value="一键发布">
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+{% endblock %}

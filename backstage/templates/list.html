@@ -1,18 +1,26 @@
 {% extends 'base.html' %}
 {% block title %}后台{% endblock %}
 {% block maintext %}
-
     {% if request.session.user_status == '老师' %}
-        {% load djangocodemirror_tags %}
-        {{ task_form.as_p }}
-        {% codemirror_field_css_assets task_form.scripts %}
-        {% codemirror_field_js_assets task_form.scripts %}
-        <script>
-    var foo_codemirror = CodeMirror.fromTextArea(
-        document.getElementById("id_scripts"),
-        {{ task_form.scripts|codemirror_parameters }}
-    );
-        </script>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-2">
+                    <a href="#" class="list-group-item active"><span class="glyphicon glyphicon-home"></span>后台管理
+                    </a>
+                    <a href="{% url 'backstage:create_task' %}" class="list-group-item">
+                    <!-- 小图标样式设置 -->
+                        <span class="glyphicon glyphicon-align-left" aria-hidden="true">
+                    </span>发布任务</a>
+                    <a href="#" class="list-group-item">
+                        <span class="glyphicon glyphicon-align-left" aria-hidden="true">
+                    </span>创建班级</a>
+                </div>
+                {% block right_context %}
+                    <h2 class="text-center">欢迎来到教师后台</h2>
+                {% endblock %}
+
+                    </div>
+        </div>
     {% else %}
         <h1>你没有访问权限</h1>
     {% endif %}

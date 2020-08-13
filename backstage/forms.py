@@ -4,10 +4,9 @@
 # @File    : forms.py
 # @Software: PyCharm
 from django import forms
-from djangocodemirror.fields import CodeMirrorField
+
 
 class CreateTask(forms.Form):
-    title = forms.CharField()
-    descriptions = forms.CharField(widget=forms.Textarea)
-    scripts = CodeMirrorField(label="代码", required=True,
-                          config_name="x-c",)
+    title = forms.CharField(label='标题')
+    descriptions = forms.CharField(widget=forms.Textarea,label='题目描述')
+    scripts =forms.CharField(widget=forms.Textarea,label='示例代码')

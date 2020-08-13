@@ -39,11 +39,27 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="{% url 'login:index' %}">主页</a></li>
               <li class="active"><a href="{% url 'front:editor' %}">在线编程</a></li>
-              <li class="active"><a href="{% url 'backstage:index' %}">发布作业</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
               {% if request.session.is_login %}
-                  <li><a href="#">当前在线：{{ request.session.user_name }}</a></li>
+                  <li class="dropdown">
+                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" target="mainFrame">
+                     当前在线：{{ request.session.user_name }}<span class="caret"></span>
+                 </a>
+                 <ul class="dropdown-menu">
+                     {% if request.session.user_status == '老师' %}
+                     <li>
+                         <a href="{% url 'backstage:index' %}" target="mainFrame">教师后台</a>
+                     </li>
+                         {% endif %}
+                     <li>
+                         <a href="#" target="mainFrame">个人中心</a>
+                     </li>
+                     <li>
+                         <a href="#" target="mainFrame">修改密码</a>
+                     </li>
+                 </ul>
+             </li>
                   <li><a href="/logout/">登出</a></li>
               {% else %}
                   <li><a href="/login/">登录</a></li>
