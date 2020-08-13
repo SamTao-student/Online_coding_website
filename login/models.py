@@ -1,5 +1,5 @@
 from django.db import models
-
+from  backstage import models as bm
 
 class User(models.Model):
     '''用户表'''
@@ -18,6 +18,7 @@ class User(models.Model):
     sex = models.CharField(max_length=32, choices=gender, default='男')
     status = models.CharField(max_length=32, choices=identity, default='学生')
     c_time = models.DateTimeField(auto_now_add=True)
+    to_class = models.ForeignKey(bm.Class,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
