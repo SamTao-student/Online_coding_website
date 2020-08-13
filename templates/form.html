@@ -10,7 +10,7 @@
             </div>
             <div class="col-sm-4">
                 {% load djangocodemirror_tags %}
-<form action="#" method="post">{% csrf_token %}
+<form action="{{ task.id }}" method="post">{% csrf_token %}
     <div class="form-group">
         <div class="text-info page-header"><h3>你的代码</h3></div>
 
@@ -30,5 +30,6 @@
             </div>
             <div class="col-sm-4">
             <div class="text-info page-header"><h3>运行结果</h3></div>
-                <div>{{ result }}</div>
+                <div>{{ result }}
+                </div></div>
 {% endblock %}

@@ -27,18 +27,17 @@ int main(void)
 {
   printf("Hello World");
 }'''}
-    num = '0'
     def get(self, request, *args, **kwargs):
-        self.num = kwargs['id']
-        self.extra_context = {'task': bm.Task.objects.get(pk=self.num),
+        self.extra_context = {'task': bm.Task.objects.get(pk=kwargs['id']),
                          'result': '您的结果将会显示在这...'}
-        print(kwargs)
-        return self.render_to_response(self.get_context_data())
-    def form_valid(self, form):
-        self.extra_context = {'task': bm.Task.objects.get(pk=self.num),
-                              'result': bianyi(form)}
         return self.render_to_response(self.get_context_data())
 
+    def post(self, request, *args, **kwargs):
+        form = SampleForm(request.POST)
+        if form.is_valid():
+            self.extra_context = {'task': bm.Task.objects.get(pk=kwargs['id']),
+                                'result':bianyi(form)}
+        return self.render_to_response(self.get_context_data())
 
 def index(request):
     task_list = bm.Task.objects.all()

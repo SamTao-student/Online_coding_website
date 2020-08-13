@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'list.html' %}
+{% block right_context %}
+    <div class="col-sm-10">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                任务详情
+            </div>
+            <div class="panel-body">
+                {% if message %}
+                    <div class="alert alert-warning">{{ message }}</div>
+                {% endif %}
+                {% if success %}
+                    <div class="alert alert-success">{{ success }}</div>
+                {% endif %}
+            <form action="" method="post">{% csrf_token %}
+                <div class="form-group">
+                    {{ detial_form.title.label }}
+                    {{ detial_form.title }}
+                </div>
+                <div class="form-group">
+                    {{ detial_form.descriptions.label }}
+                    {{ detial_form.descriptions }}
+                </div>
+                <div class="form-group">
+                    {{ detial_form.scripts.label }}
+                    {{ detial_form.scripts }}
+                </div>
+                {% if not success %}
+                    <div><input type="submit" value="确认提交"></div>
+                {% endif %}
+            </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

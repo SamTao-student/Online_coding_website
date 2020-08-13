@@ -31,3 +31,42 @@ def create_task(request):
 def task_control(request):
     task_list =  Task.objects.filter(author=request.session.get('user_name'))
     return render(request,'task_control.html',locals())
+
+def task_detial(request,id):
+    task = Task.objects.get(id=id)
+    if request.method == 'POST':
+        remake_task = CreateTask(request.POST)
+        if remake_task.is_valid():
+            re_title = remake_task.cleaned_data['title']
+            print(re_title)
+            re_descriptions = remake_task.cleaned_data['descriptions']
+            re_scripts = remake_task.cleaned_data['scripts']
+            same_title = Task.objects.filter(title=re_title)
+            if same_title:
+                message = '相同的标题已存在，请重新输入'
+                detial_form = EditorTask(initial={'title': task.title,
+                                                  'descriptions': task.descriptions,
+                                                  'scripts': task.scripts})
+                return render(request,'task_detial.html',locals())
+            else:
+                success = '修改成功'
+                task.title = re_title
+                task.descriptions = re_descriptions
+                task.scripts = re_scripts
+                task.save()
+                return render(request,'task_detial.html',locals())
+    detial_form = EditorTask(initial={'title':task.title,
+                                      'descriptions':task.descriptions,
+                                      'scripts':task.scripts})
+    return render(request,'task_detial.html',locals())
+
+def task_delate(request,id):
+    if request.method == 'POST':
+        message = '删除成功,请返回任务列表查看'
+        task = Task.objects.get(pk=id)
+        task.delete()
+    return render(request,'delate_task.html',locals())
+
+
+def class_control(request):
+    return render(request,'class_control.html')

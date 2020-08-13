@@ -3,21 +3,40 @@
 {% block maintext %}
     {% if request.session.is_login %}
         <div class="col-sm-10">
-    <a href="#" class="list-group-item active">
+    <a class="list-group-item active">
     任务列表
     </a>
             {% for context in task_list %}
         <a href="editor/{{ context.id }}" class="list-group-item">
-            {{ context.id }}
             {{ context.title }}
             <div class="text-right">作者：{{ context.author }}&emsp;发布时间：{{ context.c_time }}</div>
     </a>
         {% endfor %}
+        <ul class="pagination" style="float: right;">
+                        <li><a href="#">&laquo;</a>
+                        </li>
+                        <li class="active"><a href="#">1</a>
+                        </li>
+                        <li><a href="#">2</a>
+                        </li>
+                        <li><a href="#">3</a>
+                        </li>
+                        <li><a href="#">4</a>
+                        </li>
+                        <li><a href="#">5</a>
+                        </li>
+                        <li><a href="#">&raquo;</a>
+                        </li>
+                    </ul>
         </div>
         <div class="col-sm-2">
             <a href="#" class="list-group-item list-group-item-heading active">排行榜</a>
         </div>
     {% else %}
-    <h1>你尚未登录，请先登录</h1>
+    <h1 class="text-center">OnlineCoding</h1>
+        <p class="text-center">这个网站是专门为学生打造的在线编程平台，现如今仅支持C语言的编程。
+        更多功能还在不断完善开发中......
+        </p>
+        <h3 class="text-center">如果想要使用，请先<a href="{% url 'login:login' %}">登录</a></h3>
     {% endif %}
 {% endblock %}
