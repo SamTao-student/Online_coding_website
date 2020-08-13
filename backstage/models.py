@@ -1,5 +1,4 @@
 from django.db import models
-from login import models as lm
 class Task(models.Model):
     title = models.CharField(max_length=128,null=True)
     descriptions = models.TextField(null=True)
