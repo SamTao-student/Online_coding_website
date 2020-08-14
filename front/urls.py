@@ -11,4 +11,5 @@ app_name = 'front'
 urlpatterns = [
     path('',index,name='index'),
     path('editor/<id>',editor.as_view(), name='editor'),
+    path('blog/',blog,name='blog'),
 ]

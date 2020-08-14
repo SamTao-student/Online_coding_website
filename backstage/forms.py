@@ -21,3 +21,5 @@ class EditorClass(forms.Form):
     max_student = forms.IntegerField(label='班级最大人数')
 class Add_student(forms.Form):
     student_name = forms.CharField(label='学生姓名')
+class Add_class(forms.Form):
+    class_name = forms.CharField(label='班级名称')

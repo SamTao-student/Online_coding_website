@@ -43,4 +43,7 @@ def index(request):
     task_list = bm.Task.objects.all()
     return render(request,'index.html',locals())
 
+def blog(request):
+    return render(request,'blog_index.html')
+
 

@@ -98,3 +98,33 @@ def add_student(request):
                 warning = '学生不存在，添加失败！'
     add_form = Add_student()
     return render(request,'add_student.html',locals())
+
+def add_class(request):
+    if request.method == 'POST':
+        add_form = Add_class(request.POST)
+        if add_form.is_valid():
+            class_name = add_form.cleaned_data['class_name']
+            target_class = Class.objects.filter(class_name=class_name)
+            if target_class:
+                warning = '您所要创建的班级已存在！'
+            else:
+                success_message = '创建成功'
+                print(request.session['user_name'])
+                new_class = Class.objects.create(class_name=class_name,
+                                                 create_teacher=request.session['user_name'])
+                new_class.save()
+    add_form = Add_class()
+    return render(request,'add_class.html',locals())
+def delate_student(request,id):
+    if request.method == 'POST':
+        message = '删除成功,请返回学生列表查看'
+        student = Student.objects.get(pk=id)
+        student.to_class = None
+        student.save()
+    return render(request,'delate_student.html',locals())
+def delate_class(request,id):
+    if request.method == 'POST':
+        message = '删除成功,请返回班级列表查看'
+        del_class = Class.objects.get(pk=id)
+        del_class.delete()
+    return render(request,'delate_student.html',locals())

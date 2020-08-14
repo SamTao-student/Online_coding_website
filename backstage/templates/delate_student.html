@@ -1,0 +1,12 @@
+{% extends 'list.html' %}
+{% block right_context %}
+    {% if not message %}
+    <form action="#" method="post">{% csrf_token %}
+        <div class="alert alert-warning col-sm-10">确认删除吗？一旦删除不可撤销。</div>
+    <input type="submit" value="确认删除" class="btn btn-primary">
+    </form>
+        {% else %}
+        <div class="alert alert-success col-sm-10">{{ message }}</div>
+    {% endif %}
+
+{% endblock %}
