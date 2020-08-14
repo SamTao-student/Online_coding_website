@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'login',
     'captcha',
     'backstage',
+    'blog',
     # 'ckeditor',
 ]
 

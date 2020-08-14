@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}博客首页{% endblock %}
+{% block maintext %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2">
+                <a href="#" class="list-group-item" style="background: gray"><span class="glyphicon glyphicon-home"></span>导航
+                </a>
+                <a href="#" class="list-group-item active">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>精华</a>
+                <a href="#" class="list-group-item">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>班级圈子</a>
+                <a href="#" class="list-group-item">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>订阅</a>
+                <a href="#" class="list-group-item">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>关注</a>
+                <a href="#" class="list-group-item">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>我评</a>
+                <a href="#" class="list-group-item">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>我赞</a>
+                <a href="#" class="list-group-item">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>专区</a>
+            </div>
+            {% block right_context %}
+                <div class="col-sm-10">
+                <form role="form" class="form-inline" method="post">{% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="name" placeholder="请输入题目的标题">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default">开始搜索</button>
+                    </div>
+                </form>
+                    <a href="#" class="list-group-item">【编辑推荐】</a>
+                    <a href="#" class="list-group-item">【最多点赞】&emsp;&emsp;{{ max_num_blog }}</a>
+                <a href="#" class="list-group-item">【最多评论】</a>
+                {% for blog in blog_list %}
+                    <a href="#" class="list-group-item">{{ blog }}<div class="text-left">作者：{{ blog.author }}&emsp;发布时间：{{ blog.c_time }}&emsp;点赞数：{{ blog.zan_num }}</div></a>
+                {% endfor %}
+                </div>
+            {% endblock %}
+
+        </div>
+    </div>
+{% endblock %}
