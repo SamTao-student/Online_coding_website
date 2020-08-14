@@ -6,6 +6,15 @@
             <a class="glyphicon glyphicon-plus">新增学生</a>
         </div>
         <div class="panel-body">
+            {% if warning %}
+                <div class="alert alert-warning">{{ warning }}</div>
+            {% endif %}
+            {% if fail_message %}
+                <div class="alert alert-danger">{{ fail_message }}</div>
+            {% endif %}
+            {% if success_message %}
+                <div class="alert alert-success">{{ success_message }}</div>
+            {% endif %}
             <form action="." method="post">{% csrf_token %}
                 {{ add_form.student_name.label }}{{ add_form.student_name }}
                 <input type="submit" value="确认增加" class="btn btn-primary">

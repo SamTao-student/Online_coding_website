@@ -86,6 +86,15 @@ def add_student(request):
         add_form = Add_student(request.POST)
         if add_form.is_valid():
             new_class_student = add_form.cleaned_data['student_name']
+            try:
+                target_student = Student.objects.get(name=new_class_student)
+                if target_student.to_class != None:
+                    fail_message = '学生已有班级，增加失败!'
+                else:
+                    success_message = '添加成功'
+                    target_student.to_class = Class.objects.get(pk=request.session['class_id'])
+                    target_student.save()
+            except :
+                warning = '学生不存在，添加失败！'
     add_form = Add_student()
-    print(request.session['class_id'])
     return render(request,'add_student.html',locals())

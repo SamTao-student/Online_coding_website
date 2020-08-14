@@ -11,7 +11,7 @@ class Student(models.Model):
     email = models.EmailField(unique=True)
     sex = models.CharField(max_length=32, choices=gender, default='男')
     c_time = models.DateTimeField(auto_now_add=True)
-    to_class = models.ForeignKey(bm.Class,on_delete=models.DO_NOTHING,default=1)
+    to_class = models.ForeignKey(bm.Class,on_delete=models.DO_NOTHING,default=None,null=True,blank=True)
     status = models.CharField(max_length=10,editable=False,default='学生')
     def __str__(self):
         return self.name
