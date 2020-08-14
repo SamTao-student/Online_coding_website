@@ -13,4 +13,7 @@ urlpatterns = [
     path('task_control/detial/<id>',task_detial,name='detial'),
     path('task_control/delate/<id>',task_delate,name='delate'),
     path('class_control/',class_control,name='class_control'),
+    path('class_control/detial/<id>',class_detial,name='class_detial'),
+    path('add_student/',add_student,name='add_student'),
+# path('class_control/delate/<id>',class_delate,name='class_control'),
 ]

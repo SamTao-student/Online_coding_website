@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
 from .models import *
 from .forms import *
+from login.models import *
 def index(request):
     return render(request,'list.html')
 
@@ -69,4 +69,23 @@ def task_delate(request,id):
 
 
 def class_control(request):
-    return render(request,'class_control.html')
+    class_list = Class.objects.filter(create_teacher = request.session.get('user_name'))
+    try:
+        del request.session['class_id']
+    except :
+        pass
+    return render(request,'class_control.html',locals())
+
+def class_detial(request,id):
+    request.session['class_id'] = id
+    student_list = Student.objects.filter(to_class=Class.objects.get(pk=id))
+    return render(request,'class_detial.html',locals())
+
+def add_student(request):
+    if request.method == 'POST':
+        add_form = Add_student(request.POST)
+        if add_form.is_valid():
+            new_class_student = add_form.cleaned_data['student_name']
+    add_form = Add_student()
+    print(request.session['class_id'])
+    return render(request,'add_student.html',locals())

@@ -17,6 +17,7 @@ class Task(models.Model):
 class Class(models.Model):
     class_name = models.CharField(max_length=20)
     max_student = models.IntegerField()
+    create_teacher = models.CharField(max_length=10,default=None)
     class Meta:
         db_table = "class"  # 定义表名
         verbose_name = '班级'  # 这个verbose_name是在管理后台显示的名称

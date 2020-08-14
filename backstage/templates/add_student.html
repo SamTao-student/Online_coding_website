@@ -1,0 +1,20 @@
+{% extends 'list.html' %}
+{% block right_context %}
+<div class="col-sm-10">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a class="glyphicon glyphicon-plus">新增学生</a>
+        </div>
+        <div class="panel-body">
+            <form action="." method="post">{% csrf_token %}
+                {{ add_form.student_name.label }}{{ add_form.student_name }}
+                <input type="submit" value="确认增加" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+{% endblock %}
