@@ -11,6 +11,8 @@ def hash_code(s,salt='mysite'):
 
 
 def login(request):
+    request.session['current_url'] = 'index'
+    print(request.session['current_url'])
     if request.session.get('is_login',None):
         return redirect('front:index')
     if request.method == "POST":
@@ -44,7 +46,6 @@ def login(request):
                     message = "用户不存在！"
                 message = "用户不存在！"
         return render(request, 'login.html', locals())
-
     login_form = UserForm()
     return render(request, 'login.html', locals())
 
@@ -94,6 +95,3 @@ def logout(request):
         return redirect('front:index')
     request.session.flush()
     return redirect('front:index')
-
-def test(request):
-    return render(request,'test.html')

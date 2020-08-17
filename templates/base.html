@@ -37,8 +37,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="my-nav">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="{% url 'front:index' %}">主页</a></li>
-              <li class="active"><a href="{% url 'front:blog:index' %}">论坛</a></li>
+            <li {% if request.session.current_url == 'index' %}class="active"{% endif %}><a href="{% url 'front:index' %}">主页</a></li>
+              <li {% if request.session.current_url == 'blog' %}class="active"{% endif %}><a href="{% url 'front:blog:index' %}">论坛</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
               {% if request.session.is_login %}

@@ -40,6 +40,7 @@ int main(void)
         return self.render_to_response(self.get_context_data())
 
 def index(request):
+    request.session['current_url'] = 'index'
     task_list = bm.Task.objects.all()
     return render(request,'index.html',locals())
 

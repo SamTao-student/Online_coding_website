@@ -1,45 +1,223 @@
 {% extends 'base.html' %}
 {% block title %}博客首页{% endblock %}
 {% block maintext %}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-2">
-                <a href="#" class="list-group-item" style="background: gray"><span class="glyphicon glyphicon-home"></span>导航
-                </a>
-                <a href="#" class="list-group-item active">
-                    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>精华</a>
-                <a href="#" class="list-group-item">
-                    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>班级圈子</a>
-                <a href="#" class="list-group-item">
-                    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>订阅</a>
-                <a href="#" class="list-group-item">
-                    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>关注</a>
-                <a href="#" class="list-group-item">
-                    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>我评</a>
-                <a href="#" class="list-group-item">
-                    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>我赞</a>
-                <a href="#" class="list-group-item">
-                    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>专区</a>
-            </div>
-            {% block right_context %}
-                <div class="col-sm-10">
-                <form role="form" class="form-inline" method="post">{% csrf_token %}
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="name" placeholder="请输入题目的标题">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-default">开始搜索</button>
-                    </div>
-                </form>
-                    <a href="#" class="list-group-item">【编辑推荐】</a>
-                    <a href="#" class="list-group-item">【最多点赞】&emsp;&emsp;{{ max_num_blog }}</a>
-                <a href="#" class="list-group-item">【最多评论】</a>
-                {% for blog in blog_list %}
-                    <a href="#" class="list-group-item">{{ blog }}<div class="text-left">作者：{{ blog.author }}&emsp;发布时间：{{ blog.c_time }}&emsp;点赞数：{{ blog.zan_num }}</div></a>
-                {% endfor %}
-                </div>
-            {% endblock %}
-
-        </div>
-    </div>
+ <link href="/static/CSS/buju.css" rel="stylesheet">
+ <link href="/static/CSS/index.css" rel="stylesheet">
+ <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.3.2/jquery.min.js"></script>
+ <script type="text/javascript" src="/static/JS/sliders.js"></script>
+{#  <header>#}
+{#    <div class="logo f_l">#}
+{#	   <a href="#">#}
+{#	      <img src="/static/images/logo.png">#}
+{#	   </a>#}
+{#	 </div>#}
+{#  </header>#}
+  <article>
+    <div class="l_box f_l">
+	  <div class="banner">
+	    <div id="slide-holder">
+		   <div id="slide-runner">
+		     <a href="/" target="_blank">
+			     <img id="slide-img-1" src="/static/images/a1.jpg" alt style>
+			  </a>
+			  <a href="/" target="_blank">
+			     <img id="slide-img-2" src="/static/images/a2.jpg" alt style>
+			  </a>
+			  <a href="/" target="_blank">
+			     <img id="slide-img-3" src="/static/images/a3.jpg" alt style>
+			  </a>
+			  <a href="/" target="_blank">
+			     <img id="slide-img-4" src="/static/images/a4.jpg" alt style>
+			  </a>
+			  <div id="slide-controls" style="display:block;">
+			    <p id="slide-client" class="text">
+				    <strong></strong>
+					 <span></span>
+				 </p>
+              <p id="slide-desc" class="text"></p>
+              <p id="slide-nav"></p>
+			  </div>
+		   </div>
+		 </div>
+	  </div>
+	  <script>
+	     if(!window.slider){
+		     var slider={};
+		 }
+		 slider.data=[
+		 {
+		     "id":"slide-img-1", //与slide-runner中的img标签id对应
+			 "client":"醉牛逼",
+			 "desc":"醉牛逼是武魂醉牛逼的存在"     //这里描述图片内容
+		 },
+		 {
+		     "id":"slide-img-2",
+			 "client":"醉牛逼",
+			 "desc":"醉牛逼是武魂醉牛逼的存在"
+		 },
+		 {
+		     "id":"slide-img-3",
+			 "client":"醉牛逼",
+			 "desc":"醉牛逼是武魂醉牛逼的存在"
+		 },
+		 {
+		     "id":"slide-img-4",
+			 "client":"醉牛逼",
+			 "desc":"醉牛逼是武魂醉牛逼的存在"
+		 }
+		 ];
+	   </script>
+	   <div class="topnews">
+	   <h2>
+	    文章推荐
+	   </h2>
+           {% for blog in blog_list %}
+	            <div class="blogs">
+		      <figure>
+			     <img src="/static/images/01.jpg">
+                  <span class="autor">
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      作者：{{ blog.author }}</span>
+			   </figure>
+			   <ul>
+			     <h3><a href="/">{{ blog.title }}</a></h3>
+				  <p>
+                      {{ blog.context }}
+                  </p>
+			     <p class="autor">
+				    <span class="lm f_l">
+					    <a href="/">个人博客</a>
+					 </span>
+					 <span class="dtime f_l">{{ blog.c_time }}</span>
+					 <span class="viewnum f_r">
+					    浏览（<a href="/">666</a>）</span>
+					 <span class="pingl f_r">
+					    评论（<a href="/">60</a>）</span>
+				  </p>
+			   </ul>
+	       </div>
+           {% endfor %}
+	   </div>
+	 </div>
+    <div class="r_box f_r">
+	   <div class="tab" id="lp_right_select">
+	     <script>
+		     window.onload=function()
+			 {
+			     var oLi=document.getElementById("tb").getElementsByTagName("li");
+				 var oUl=document.getElementById("tb-main").getElementsByTagName("div");
+				 for(var i=0;i<oLi.length;i++)
+				 {
+				     oLi[i].index=i;
+					 oLi[i].onmouseover=function()
+					 {
+					    for(var n=0;n<oLi.length;n++)
+						    oLi[n].className="";
+							this.className="cur";
+						for(var n=0;n<oUl.length;n++)
+                            oUl[n].style.display="none";
+                            oUl[this.index].style.display="block";
+					 }
+				 }
+			 }
+		  </script>
+	     <div class="tab-top">
+		      <ul class="hd" id="tb">
+			       <li class="cur"><a href="/">点击排行</a></li>
+				   <li><a href="/">最新文章</a></li>
+				   <li><a href="/">站长推荐</a></li>
+			  </ul>
+		  </div>
+		  <div class="tab-main" id="tb-main">
+		      <div class="bd bd-news" style="display:block;"><ul>
+			      <li><a href="/" target="_blank">住在手机里的朋友</a></li>
+				   <li><a href="/" target="_blank">教你怎样用欠费手机拨打电话</a></li>
+				   <li><a href="/" target="_blank">原来以为，一个人的勇敢是，删掉他的手机号码...</a></li>
+				   <li><a href="/" target="_blank">手机的16个惊人小秘密，据说99.999%的人都不知</a></li>
+				   <li><a href="/" target="_blank">你面对的是生活而不是手机</a></li>
+				   <li><a href="/" target="_blank">豪雅手机正式发布! 在法国全手工打造的奢侈品</a></li>
+			  </ul></div>
+			   <div class="bd bd-news" ><ul>
+			      <li><a href="/" target="_blank">原来以为，一个人的勇敢是，删掉他的手机号码...</a></li>
+				   <li><a href="/" target="_blank">手机的16个惊人小秘密，据说99.999%的人都不知</a></li>
+				   <li><a href="/" target="_blank">住在手机里的朋友</a></li>
+				   <li><a href="/" target="_blank">教你怎样用欠费手机拨打电话</a></li>
+				   <li><a href="/" target="_blank">你面对的是生活而不是手机</a></li>
+				   <li><a href="/" target="_blank">豪雅手机正式发布! 在法国全手工打造的奢侈品</a></li>
+			  </ul></div>
+			   <div class="bd bd-news" ><ul>
+			      <li><a href="/" target="_blank">手机的16个惊人小秘密，据说99.999%的人都不知</a></li>
+				   <li><a href="/" target="_blank">你面对的是生活而不是手机</a></li>
+				   <li><a href="/" target="_blank">住在手机里的朋友</a></li>
+				   <li><a href="/" target="_blank">豪雅手机正式发布! 在法国全手工打造的奢侈品</a></li>
+				   <li><a href="/" target="_blank">你面对的是生活而不是手机</a></li>
+				   <li><a href="/" target="_blank">原来以为，一个人的勇敢是，删掉他的手机号码...</a></li>
+			  </ul></div>
+		  </div>
+	   </div>
+	   <div class="cloud">
+	     <h3>标签云</h3>
+		  <ul>
+		    <li><a href="/">个人博客</a></li>
+			 <li><a href="/">web开发</a></li>
+			 <li><a href="/">前端设计</a></li>
+			 <li><a href="/">Html</a></li>
+			 <li><a href="/">CSS3</a></li>
+			 <li><a href="/">CSS3+HTML5</a></li>
+			 <li><a href="/">百度</a></li>
+			 <li><a href="/">JavaScript</a></li>
+			 <li><a href="/">C/C++</a></li>
+			 <li><a href="/">ASP.NET</a></li>
+			 <li><a href="/">IOS开发</a></li>
+			 <li><a href="/">Android开发</a></li>
+			 <li><a href="/">PHP</a></li>
+			 <li><a href="/">VS</a></li>
+		  </ul>
+	   </div>
+	   <div class="tuwen">
+	     <h3>图文推荐</h3>
+		 <ul>
+		   <li><a href="/"><img src="images/01.jpg"><b>住在手机里的朋友</b></a>
+		      <p>
+			      <span class="tulanum"><a href="/">手机配件</a></span>
+				   <span class="tutime">2016-02-16</span>
+			   </p>
+		   </li>
+		   <li><a href="/"><img src="images/02.jpg"><b>教你怎样用欠费手机拨打电话</b></a>
+		      <p>
+			      <span class="tulanum"><a href="/">手机配件</a></span>
+				   <span class="tutime">2016-02-16</span>
+			   </p></li>
+		   <li><a href="/"><img src="images/03.jpg"><b>手机的16个惊人小秘密，据说99.999%的人都不知</b></a>
+		      <p>
+			      <span class="tulanum"><a href="/">手机配件</a></span>
+				   <span class="tutime">2016-02-16</span>
+			   </p></li>
+		   <li><a href="/"><img src="images/06.jpg"><b>原来以为，一个人的勇敢是，删掉他的手机号码...</b></a>
+		      <p>
+			      <span class="tulanum"><a href="/">手机配件</a></span>
+				   <span class="tutime">2016-02-16</span>
+			   </p></li>
+		   <li><a href="/"><img src="images/04.jpg"><b>豪雅手机正式发布! 在法国全手工打造的奢侈品</b></a>
+		      <p>
+			      <span class="tulanum"><a href="/">手机配件</a></span>
+				   <span class="tutime">2016-02-16</span>
+			   </p></li>
+		 </ul>
+	   </div>
+	   <div class="ad"><img src="images/03.jpg"></div>
+	   <div class="links">
+	     <h3><span><a href="/">申请友情链接</a></span>友情链接</h3>
+		 <ul>
+		   <li><a href="/">醉牛逼的武魂生涯</a></li>
+		    <li><a href="/">观察者网</a></li>
+			 <li><a href="/">中国投资</a></li>
+			  <li><a href="/">强国论坛</a></li>
+			   <li><a href="/">车讯网</a></li>
+			    <li><a href="http://www.genban.org">跟版模板网</a></li>
+				 <li><a href="/">一带一路门户网</a></li>
+		 </ul>
+	   </div>
+	 </div>
+  </article>
 {% endblock %}
