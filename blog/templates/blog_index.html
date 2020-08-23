@@ -80,19 +80,19 @@
                       作者：{{ blog.author }}</span>
 			   </figure>
 			   <ul>
-			     <h3><a href="/">{{ blog.title }}</a></h3>
+			     <h3><a href="detial/{{ blog.id }}">{{ blog.title }}</a></h3>
 				  <p>
-                      {{ blog.context }}
+                      {{ blog.description }}
                   </p>
 			     <p class="autor">
 				    <span class="lm f_l">
 					    <a href="/">个人博客</a>
 					 </span>
-					 <span class="dtime f_l">{{ blog.c_time }}</span>
+					 <span class="dtime f_l">{{ blog.publish_time }}</span>
 					 <span class="viewnum f_r">
-					    浏览（<a href="/">666</a>）</span>
+					    浏览（<a href="/">{{ blog.read_count }}</a>）</span>
 					 <span class="pingl f_r">
-					    评论（<a href="/">60</a>）</span>
+					    评论（<a href="/">{{ blog.comment_count }}</a>）</span>
 				  </p>
 			   </ul>
 	       </div>

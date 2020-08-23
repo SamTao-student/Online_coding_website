@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ blog.title }}{% endblock %}
+{% block maintext %}
+      <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.css' %}">
+    <!-- 引入monikai.css -->
+    <link rel="stylesheet" href="{% static 'default.css' %}">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <div style="">{{ blog.content|safe }}</div>
+        <span>评论</span>
+        <form action="#" method="post">{% csrf_token %}
+            {{ form.media }}
+        <div>{{ form.content }} </div>
+        <input type="submit">
+        </form>
+    </div>
+    <div class="col-sm-2">
+        最新评论
+        {% for comment in comments %}
+            <a class="list-group-item">{{ comment.content|safe }}</a>
+        {% endfor %}
+    </div>
+{% endblock %}
 
-</body>
-</html>

@@ -14,6 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path,include
 from front import urls as furls
 from login import urls as lurls
@@ -24,4 +26,8 @@ urlpatterns = [
     path('',include(lurls,namespace='login')),
     path('back/',include(burls,namespace='backstage')),
     path('captcha/',include('captcha.urls')),
+    path('mdeditor/',include('mdeditor.urls')),
 ]
+if settings.DEBUG:
+    # static files (images, css, javascript, etc.)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

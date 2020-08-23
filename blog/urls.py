@@ -9,4 +9,6 @@ from .views import *
 app_name = 'blog'
 urlpatterns = [
     path('', blog_index, name='index'),
+    path('pub/',article_pub,name='pub_article'),
+    path('detial/<pk>',blog_detail,name='detial'),
 ]

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'captcha',
     'backstage',
     'blog',
+    'mdeditor',
     # 'ckeditor',
 ]
 
@@ -135,3 +136,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')  #新建一个uploads文件夹，且在项目目录下
+MEDIA_URL = '/media/'   #你上传的文件和图片会默认存在/uploads/editor下 这一步不用创建任何文件夹
