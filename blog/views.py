@@ -81,3 +81,6 @@ def blog_detail(request, pk):
             form.instance.author = request.session['user_name']
             form.save()
     return render(request,'blog_detial.html',locals())
+
+def blog_control(request):
+    return render(request,'blog_control.html',locals())

@@ -11,4 +11,5 @@ urlpatterns = [
     path('', blog_index, name='index'),
     path('pub/',article_pub,name='pub_article'),
     path('detial/<pk>',blog_detail,name='detial'),
+    path('backstage/',blog_control,name='back'),
 ]
